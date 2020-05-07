@@ -26,30 +26,21 @@ then
 	
 	## Install oh-my-zsh
     wget -c -O /tmp/oh-my-zsh.sh 'https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
-    if ! [ -d "$HOME"/.oh-my-zsh ]
-    then
-        echo y | sh /tmp/oh-my-zsh.sh -y
-    echo Oh-my-zsh existed
-    fi
+
+    [[ ! -d "$HOME"/.oh-my-zsh ]] && echo y | sh /tmp/oh-my-zsh.sh -y || echo Oh-my-zsh existed
     
     ## Install font
     ## Install p10k theme
-    if  ! [ -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k ]
-    then
-        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
-    fi
+    [[ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k ]] \
+    && git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
     
     # Install auto suggestion plugin
-    if ! [ -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]
-    then
-        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    [[ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]] \
+    && git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-    fi
 
-    if ! [ -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]
-    then
-		git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting   
-	fi
+    [[ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]] \
+	&& git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting   
 
     ## Install autojump
     apt install python -y
@@ -67,15 +58,9 @@ then
    ### Create simlink
 
    ## Backup .zshrc config  ( incase )
-   if [ -f ~/.zshrc ]
-   then 
-       mv ~/.zshrc ~/.zshrc.bak
-    fi
+    [[ -f ~/.zshrc ]] &&  mv ~/.zshrc ~/.zshrc.bak
 
-    if [ -f ~/.profile ]
-    then
-      mv ~/.profile ~/.profile.bak
-    fi
+    [[ -f ~/.profile ]] && mv ~/.profile ~/.profile.bak
     
     ## Create simlink for dotfiles.
     # [ ! -d ~/.dotfiles ] && mkdir ~/.dotfiles
