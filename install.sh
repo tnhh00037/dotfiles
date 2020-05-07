@@ -11,6 +11,9 @@ then
 	## Install wget
 	apt install wget -y
 	
+    ## Install vim
+    apt install vim -y
+    
 	## Install git
 	apt install git -y
 
@@ -51,9 +54,11 @@ then
     ## Install tmux & plugins
     # tmux
     apt-get install tmux -y
+    # plugins management
+    git clone https://github.com/tmux-plugins/tpm  ~/.tmux/plugins/tpm
     # plugins: Tmux Resurrect
-    [[ ! -d ~/tmux_plugins/tmux-resurrect/]] \
-    && git clone https://github.com/tmux-plugins/tmux-resurrect ~/tmux_plugins/
+    [[ ! -d ~/tmux_plugins/tmux-resurrect/ ]] \
+    && git clone https://github.com/tmux-plugins/tmux-resurrect  ~/.tmux/plugins/tmux-resurrect
     
    ### Create simlink
 
@@ -68,5 +73,6 @@ then
     cp "$PWD"/.zshrc ~ 
     cp "$PWD"/.tmux.conf ~
     echo source "$PWD"/.profile >> ~/.zshrc
+    tmux && tmux source ~/.tmux.conf && ~/.tmux/plugins/tpm/scripts/update_plugin.sh
 
 fi
