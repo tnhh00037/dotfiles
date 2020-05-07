@@ -38,6 +38,7 @@ then
     then
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
     fi
+    
     # Install auto suggestion plugin
     if ! [ -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]
     then
@@ -49,14 +50,19 @@ then
     then
 		git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting   
 	fi
+
     ## Install autojump
     apt install python -y
     cd
     git clone git://github.com/wting/autojump.git
     cd autojump && python ./install.py
 
-    ## Install tmux
+    ## Install tmux & plugins
+    # tmux
     apt-get install tmux -y
+    # plugins: Tmux Resurrect
+    git clone https://github.com/tmux-plugins/tmux-resurrect ~/tmux_plugins/
+    git clone https://github.com/tmux-plugins/tmux-continuum ~/tmux_plugins/
     
    ### Create simlink
 
