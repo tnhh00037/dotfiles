@@ -52,8 +52,8 @@ then
     # tmux
     apt-get install tmux -y
     # plugins: Tmux Resurrect
-    git clone https://github.com/tmux-plugins/tmux-resurrect ~/tmux_plugins/
-    git clone https://github.com/tmux-plugins/tmux-continuum ~/tmux_plugins/
+    [[ ! -d ~/tmux_plugins/tmux-resurrect/]] \
+    && git clone https://github.com/tmux-plugins/tmux-resurrect ~/tmux_plugins/
     
    ### Create simlink
 
