@@ -17,9 +17,13 @@ then
 	## Install git
 	apt install git -y
 
+    ## Install xlip ( for tmux copy/pase )
+    apt install xlip -y
+
     ## Install lsd (colorful ls)
-    wget -c -O /tmp/lsd.deb 'https://github.com/Peltoche/lsd/releases/download/0.17.0/lsd-musl_0.17.0_amd64.deb'
-    dpkg -i /tmp/lsd.deb
+    which autojump && [ "$?" -eq 1 ] \
+    && wget -c -O /tmp/lsd.deb 'https://github.com/Peltoche/lsd/releases/download/0.17.0/lsd-musl_0.17.0_amd64.deb' \
+     && dpkg -i /tmp/lsd.deb || echo "Autojump already existed. "
 
 	## Install zsh
 	# Get zsh
@@ -58,7 +62,8 @@ then
     git clone https://github.com/tmux-plugins/tpm  ~/.tmux/plugins/tpm
     # plugins: Tmux Resurrect
     [[ ! -d ~/tmux_plugins/tmux-resurrect/ ]] \
-    && git clone https://github.com/tmux-plugins/tmux-resurrect  ~/.tmux/plugins/tmux-resurrect
+    && git clone https://github.com/tmux-plugins/tmux-resurrect  ~/.tmux/plugins/tmux-resurrect \
+    && [ ! -d ~/.tmux/plugins/ ] &&  tmux && tmux source ~/.tmux.conf && ~/.tmux/plugins/tpm/scripts/update_plugin.sh
     
    ### Create simlink
 
@@ -73,6 +78,5 @@ then
     cp "$PWD"/.zshrc ~ 
     cp "$PWD"/.tmux.conf ~
     echo source "$PWD"/.profile >> ~/.zshrc
-    tmux && tmux source ~/.tmux.conf && ~/.tmux/plugins/tpm/scripts/update_plugin.sh
-
+    # zsh
 fi
