@@ -55,15 +55,19 @@ then
     # tmux
     apt-get install tmux -y
     # plugins management
-    git clone https://github.com/tmux-plugins/tpm  ~/.tmux/plugins/tpm
+    git clone https://github.com/tmux-plugins/tpm  ~/.tmux/tpm
     # plugins: Tmux Resurrect
     [[ ! -d ~/tmux_plugins/tmux-resurrect/ ]] \
-    && git clone https://github.com/tmux-plugins/tmux-resurrect  ~/.tmux/plugins/tmux-resurrect
+    && git clone https://github.com/tmux-plugins/tmux-resurrect  ~/.tmux/tmux-resurrect
     
    ### Create simlink
 
    ## Backup .zshrc config  ( incase )
-    [[ -f ~/.zshrc ]] &&  mv ~/.zshrc ~/.zshrc.bak
+   ## New ~/.zshrc will source .zshrc.local ( your old zsh )
+   ## Please modify your .zshrc.local to be suitable ( it's better to be separate with zshrc
+   ## like .node ; .nvm ; .android; .go ; .ros... for better for your mainternance
+
+    [[ -f ~/.zshrc ]] &&  mv ~/.zshrc ~/.zshrc.local
 
     [[ -f ~/.profile ]] && mv ~/.profile ~/.profile.bak
     
