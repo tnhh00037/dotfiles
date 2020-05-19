@@ -1,0 +1,77 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+$FZF_DEFAULT_OPTS	init.vim	/^    let $FZF_DEFAULT_OPTS .= ' --border'$/;"	v
+<A-j>	init.vim	/^inoremap <A-j> <Esc>:m .+1<CR>==gi$/;"	m
+<A-j>	init.vim	/^nnoremap <A-j> :m .+1<CR>==$/;"	m
+<A-j>	init.vim	/^vnoremap <A-j> :m '>+1<CR>gv=gv$/;"	m
+<A-k>	init.vim	/^inoremap <A-k> <Esc>:m .-2<CR>==gi$/;"	m
+<A-k>	init.vim	/^nnoremap <A-k> :m .-2<CR>==$/;"	m
+<A-k>	init.vim	/^vnoremap <A-k> :m '<-2<CR>gv=gv$/;"	m
+<C-g>	init.vim	/^nnoremap <C-g> :Rg<Cr>$/;"	m
+<C-p>	init.vim	/^nnoremap <C-p> :FZF<Cr>$/;"	m
+<S-Tab>	init.vim	/^nmap <S-Tab> :bprevious<CR>$/;"	m
+<Tab>	init.vim	/^nmap <Tab> :bnext<CR>$/;"	m
+<leader><leader>	init.vim	/^nmap <silent> <leader><leader> :noh<CR>$/;"	m
+<leader>a	init.vim	/^nmap <leader>a gaip*$/;"	m
+<leader>d	init.vim	/^nmap <leader>d <Plug>(pydocstring)$/;"	m
+<leader>e1	init.vim	/^nmap <leader>e1 :call ColorDracula()<CR>$/;"	m
+<leader>e2	init.vim	/^nmap <leader>e2 :call ColorSeoul256()<CR>$/;"	m
+<leader>e3	init.vim	/^nmap <leader>e3 :call ColorForgotten()<CR>$/;"	m
+<leader>e4	init.vim	/^nmap <leader>e4 :call ColorZazen()<CR>$/;"	m
+<leader>ea	init.vim	/^nmap <leader>ea :AirlineTheme $/;"	m
+<leader>ee	init.vim	/^nmap <leader>ee :Colors<CR>$/;"	m
+<leader>g	init.vim	/^nmap <leader>g :Goyo<CR>$/;"	m
+<leader>h	init.vim	/^nmap <leader>h :RainbowParentheses!!<CR>$/;"	m
+<leader>j	init.vim	/^nmap <leader>j :set filetype=journal<CR>$/;"	m
+<leader>k	init.vim	/^nmap <leader>k :ColorToggle<CR>$/;"	m
+<leader>l	init.vim	/^nmap <leader>l :Limelight!!<CR>$/;"	m
+<leader>ll	init.vim	/^nnoremap <silent><leader>ll :call ToggleLazyGit()<cr>$/;"	m
+<leader>q	init.vim	/^nmap <leader>q :NERDTreeToggle<CR>$/;"	m
+<leader>r	init.vim	/^nmap <leader>r :so ~\/.config\/nvim\/init.vim<CR>$/;"	m
+<leader>s	init.vim	/^nmap <leader>s <C-w>s<C-w>j:terminal<CR>$/;"	m
+<leader>t	init.vim	/^nmap <leader>t :call TrimWhitespace()<CR>$/;"	m
+<leader>vs	init.vim	/^nmap <leader>vs <C-w>v<C-w>l:terminal<CR>$/;"	m
+<leader>w	init.vim	/^nmap <leader>w :TagbarToggle<CR>$/;"	m
+ColorDracula	init.vim	/^function! ColorDracula()$/;"	f
+ColorForgotten	init.vim	/^function! ColorForgotten()$/;"	f
+ColorSeoul256	init.vim	/^function! ColorSeoul256()$/;"	f
+ColorZazen	init.vim	/^function! ColorZazen()$/;"	f
+CreateCenteredFloatingWindow	init.vim	/^function! CreateCenteredFloatingWindow()$/;"	f
+CreatePadding	init.vim	/^function! CreatePadding(opts)$/;"	f
+FloatingFZF	init.vim	/^  function! FloatingFZF()$/;"	f
+InvertBackground	init.vim	/^function! InvertBackground()$/;"	f
+NERDTreeShowHidden	init.vim	/^let NERDTreeShowHidden=1$/;"	v
+OnTermExit	init.vim	/^function! OnTermExit(job_id, code, event) dict$/;"	f
+RemoveEmptyBuffers	init.vim	/^function! RemoveEmptyBuffers()$/;"	f
+ResetBackground	init.vim	/^function! ResetBackground()$/;"	f
+TerminalBehavior	init.vim	/^augroup TerminalBehavior$/;"	a
+ToggleLazyGit	init.vim	/^function! ToggleLazyGit()$/;"	f
+ToggleTerm	init.vim	/^function! ToggleTerm(cmd)$/;"	f
+TrimWhitespace	init.vim	/^function! TrimWhitespace()$/;"	f
+\	init.vim	/^nmap \\ <leader>q$/;"	m
+g:NERDTreeDirArrowCollapsible	init.vim	/^let g:NERDTreeDirArrowCollapsible = '↡'$/;"	v
+g:NERDTreeDirArrowExpandable	init.vim	/^let g:NERDTreeDirArrowExpandable = '↠'$/;"	v
+g:SuperTabDefaultCompletionType	init.vim	/^let g:SuperTabDefaultCompletionType = "<C-n>"$/;"	v
+g:UltiSnipsExpandTrigger	init.vim	/^let g:UltiSnipsExpandTrigger="<C-Space>"$/;"	v
+g:UltiSnipsJumpBackwardTrigger	init.vim	/^let g:UltiSnipsJumpBackwardTrigger="<C-x>"$/;"	v
+g:UltiSnipsJumpForwardTrigger	init.vim	/^let g:UltiSnipsJumpForwardTrigger="<Tab>"$/;"	v
+g:airline_powerline_fonts	init.vim	/^let g:airline_powerline_fonts = 1$/;"	v
+g:airline_section_warning	init.vim	/^let g:airline_section_warning = ''$/;"	v
+g:airline_section_z	init.vim	/^let g:airline_section_z = ' %{strftime("%-I:%M %p")}'$/;"	v
+g:deoplete#enable_at_startup	init.vim	/^let g:deoplete#enable_at_startup = 1$/;"	v
+g:fzf_action	init.vim	/^let g:fzf_action = {$/;"	v
+g:fzf_colors	init.vim	/^let g:fzf_colors =$/;"	v
+g:fzf_layout	init.vim	/^  let g:fzf_layout = { 'window': 'call FloatingFZF()' }$/;"	v
+g:indentLine_char	init.vim	/^let g:indentLine_char = '▏'$/;"	v
+g:indentLine_color_gui	init.vim	/^let g:indentLine_color_gui = '#363949'$/;"	v
+g:python3_host_prog	init.vim	/^let g:python3_host_prog = expand('~\/.config\/nvim\/env\/bin\/python')$/;"	v
+g:tagbar_iconchars	init.vim	/^let g:tagbar_iconchars = ['↠', '↡']$/;"	v
+g:tagbar_width	init.vim	/^let g:tagbar_width = 30$/;"	v
+ga	init.vim	/^nmap ga <Plug>(EasyAlign)$/;"	m
+mapleader	init.vim	/^let mapleader=","$/;"	v
+my_git_formatter	.p10k.zsh	/^  function my_git_formatter() {$/;"	f
+prompt_example	.p10k.zsh	/^  function prompt_example() {$/;"	f
