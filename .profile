@@ -8,5 +8,5 @@ SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 A=( $SCRIPTPATH/.* )
 for f in ${A[@]}
 do
-     [[ ! $f == "$SCRIPTPATH/.zshrc" ]] && [[ ! $f == "$SCRIPTPATH/.tmux.conf" ]] && [[ ! $f == "$SCRIPTPATH/.profile" ]] && . $f
+     [[ ! $f == "$SCRIPTPATH/.zshrc" ]] && [[ ! $f == "$SCRIPTPATH/.tmux.conf" ]]  && [[ ! $f == "$SCRIPTPATH/.profile" ]] && [[ ! $f == "$SCRIPTPATH/.gitignore" ]]   && . $f
 done 
