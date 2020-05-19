@@ -62,12 +62,8 @@ then
     git clone https://github.com/tmux-plugins/tpm  ~/.tmux/tpm
     # plugins: Tmux Resurrect
     [[ ! -d ~/tmux_plugins/tmux-resurrect/ ]] \
-<<<<<<< HEAD
     && git clone https://github.com/tmux-plugins/tmux-resurrect  ~/.tmux/plugins/tmux-resurrect \
     && [ ! -d ~/.tmux/plugins/ ] &&  tmux && tmux source ~/.tmux.conf && ~/.tmux/plugins/tpm/scripts/update_plugin.sh
-=======
-    && git clone https://github.com/tmux-plugins/tmux-resurrect  ~/.tmux/tmux-resurrect
->>>>>>> 3b433459aa905cbc1249fc649354fc72bea95376
     
    ### Create simlink
 
