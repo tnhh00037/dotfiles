@@ -1,7 +1,6 @@
-""" Optixal's Neovim Init.vim
-
-""" Vim-Plug
+" Vim-Plug
 call plug#begin()
+"source ~/.config/nvim/plugged/fzf-floating.vim
 
 " Aesthetics - Main
 Plug 'dracula/vim', { 'commit': '147f389f4275cec4ef43ebc25e2011c57b45cc00' }
@@ -14,7 +13,6 @@ Plug 'junegunn/vim-journal'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'nightsense/forgotten'
 Plug 'zaki/zazen'
-
 " Aethetics - Additional
 Plug 'nightsense/nemo'
 Plug 'yuttie/hydrangea-vim'
@@ -28,6 +26,8 @@ Plug 'tpope/vim-surround'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"Plug 'zchee/deoplete-jedi'
 Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
@@ -44,14 +44,24 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'metakirby5/codi.vim'
 Plug 'dkarter/bullets.vim'
+"Plug 'kdheepak/lazygit.vim', { 'branch': 'nvim-v1.4.3'}
+Plug 'kdheepak/lazygit.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc-tsserver',  {'do': 'npm i package.json && npm i'}
+Plug 'neoclide/coc-snippets', {'do': 'npm install --frozen-lockfile'}
 
+" Vim practise
+Plug 'ThePrimeagen/vim-be-good'
 " Entertainment
 "Plug 'ryanss/vim-hackernews'
 
-call plug#end()
+" Slack
+Plug 'yaasita/edit-slack.vim'
 
+call plug#end()
 """ Python3 VirtualEnv
-let g:python3_host_prog = expand('~/.config/nvim/env/bin/python')
+let g:python3_host_prog = '/usr/bin/python3'
+let g:python_host_prog = '/usr/bin/python'
 
 """ Coloring
 syntax on
@@ -79,7 +89,8 @@ set wrap breakindent
 set encoding=utf-8
 set number
 set title
-
+set relativenumber
+set nu rnu
 """ Plugin Configurations
 
 " NERDTree
@@ -93,15 +104,30 @@ let g:airline_section_z = ' %{strftime("%-I:%M %p")}'
 let g:airline_section_warning = ''
 "let g:airline#extensions#tabline#enabled = 1
 
+" Limelight
+" Color name (:help cterm-colors) or ANSI code
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+
+" Color name (:help gui-colors) or RGB color
+let g:limelight_conceal_guifg = 'DarkGray'
+let g:limelight_conceal_guifg = '#777777'
+
 " Neovim :Terminal
 tmap <Esc> <C-\><C-n>
-tmap <C-w> <Esc><C-w>
-"tmap <C-d> <Esc>:q<CR>
+tnoremap <A-h> <C-\><C-N><C-w>h
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
+"tmap <C-w> <Esc><C-w>
+tmap <C-d> <Esc>:q<CR>
 autocmd BufWinEnter,WinEnter term://* startinsert
 autocmd BufLeave term://* stopinsert
 
 " Deoplete
-let g:deoplete#enable_at_startup = 1
+"set runtimepath+=/home/nghia/.config/nvim/jbundle/deoplete.nvim
+"set runtimepath+=/home/nghia/.config/nvim/plugged/deoplete.nvim
+"let g:deoplete#enable_at_startup = 1
 " Disable documentation window
 set completeopt-=preview
 
@@ -109,14 +135,14 @@ set completeopt-=preview
 let g:SuperTabDefaultCompletionType = "<C-n>"
 
 " Ultisnips
-let g:UltiSnipsExpandTrigger="<C-Space>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsExpandTrigger="<C-space>"
+"let g:UltiSnipsJumpForwardTrigger="<Tab>"
 let g:UltiSnipsJumpBackwardTrigger="<C-x>"
-
+" Completion trigger with tab
+inoremap <Tab> <C-y>
 " EasyAlign
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-
 " indentLine
 let g:indentLine_char = '▏'
 let g:indentLine_color_gui = '#363949'
@@ -199,165 +225,120 @@ function! ColorZazen()
     IndentLinesEnable
 endfunction
 
-""" Custom Mappings
+"" Custom Mappings
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
 inoremap <A-j> <Esc>:m .+1<CR>==gi
 inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
-let mapleader=","
+
+let mapleader=" "
+
+"" "NERDTree keymap
 nmap <leader>q :NERDTreeToggle<CR>
-nmap \ <leader>q
+nmap \ :NERDTreeToggle<CR>
+nnoremap <silent> <leader>pv :NERDTreeFind<CR>
+
+"" Color keymap
 nmap <leader>w :TagbarToggle<CR>
 nmap <leader>ee :Colors<CR>
-nmap <leader>ea :AirlineTheme 
+nmap <leader>ea :AirlineTheme<CR>
 nmap <leader>e1 :call ColorDracula()<CR>
 nmap <leader>e2 :call ColorSeoul256()<CR>
 nmap <leader>e3 :call ColorForgotten()<CR>
 nmap <leader>e4 :call ColorZazen()<CR>
-nmap <leader>r :so ~/.config/nvim/init.vim<CR>
-nmap <leader>t :call TrimWhitespace()<CR>
+
+"" Reload nivm
+nmap <leader>r :source ~/.config/nvim/init.vim<CR>
+
+"" Unknown yet??
+"nmap <leader>t :call TrimWhitespace()<CR>
+"nnoremap <leader>w <c-w>
+"inoremap <leader>w <c-w>
+"inoremap <Esc><C-w> <C-w>
+"imap <C-f> <C-W>
+"nnoremap <C-w> <Nop>
+""" Easy align ( NOT USE )
 xmap <leader>a gaip*
 nmap <leader>a gaip*
+
+"" Resize vim window:
+nmap <leader>+ :vertical res+15<CR>
+nmap <leader>- :vertical res-10<CR>
+
+""" Copy/paste
+"noremap <leader>y "*y
+"noremap <leader>p "*p
+noremap <leader>y "+y
+noremap <leader>p "+p
+
+""" Toggle terminal ( split/new window )
 nmap <leader>s <C-w>s<C-w>j:terminal<CR>
 nmap <leader>vs <C-w>v<C-w>l:terminal<CR>
-nmap <leader>d <Plug>(pydocstring)
-"nmap <leader>f :FZF<CR>
-"nmap <leader>rg :Reg<CR>
-nmap <leader>g :Goyo<CR>
-nmap <leader>h :RainbowParentheses!!<CR>
-nmap <leader>j :set filetype=journal<CR>
-nmap <leader>k :ColorToggle<CR>
-nmap <leader>l :Limelight!!<CR>
-xmap <leader>l :Limelight!!<CR>
-autocmd FileType python nmap <leader>x :0,$!~/.config/nvim/env/bin/python -m yapf<CR>
-"nmap <leader>n :HackerNews best<CR>J
-nmap <silent> <leader><leader> :noh<CR>
-nmap <Tab> :bnext<CR>
-nmap <S-Tab> :bprevious<CR>
 
-" Search files/words
-nnoremap <C-g> :Rg<Cr>
+""" Floating terminal window
+nmap <leader>tt :call FloatingTerm()<CR>
+nmap <leader>d <Plug>(pydocstring)
+
+" Move between vim windows with leader
+nmap <leader>h :wincmd h<CR>
+nmap <leader>j :wincmd j<CR>
+nmap <leader>k :wincmd k<CR>
+nmap <leader>l :wincmd l<CR>
+nmap <leader>q :wincmd q<CR>
+
+" In insert or command mode, move normally by using Ctrl
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+
+" Insert new line in Insert modeline
+imap <S-Enter> <Esc>o
+
+"nnoremap <C-a> <C-w>w
+""" Ignore last search highlight
+nmap <silent> <leader><leader> :noh<CR>
+
+""" Cursor next
+"nmap <Tab> :bnext<CR>
+
+""" Cursor prev
+nmap <S-Tab> :bprevious<CR>
+autocmd FileType python nmap <leader>x :0,$!~/.config/nvim/env/bin/python -m yapf<CR>
+
+" Search files(fzf)/words(Rg)
+nnoremap <C-f> :Rg<Cr>
 nnoremap <C-p> :FZF<Cr>
 
-
+" Enable float window
 if has('nvim-0.4.0')
    Plug 'ncm2/float-preview.nvim'
 endif
-  " LAZYGIT {{{
+
+" LAZYGIT {{{
 function! ToggleLazyGit()
 	echo "Loaded Lazygit"
 	call ToggleTerm('lazygit')
 endfunction
-nnoremap <silent><leader>ll :call ToggleLazyGit()<cr>
-    tnoremap <silent><leader>ll <C-\><C-n>:call ToggleLazyGit()<CR>
-  " }}}
-  " CREATE FLOATING WINDOW {{{
-function! CreateCenteredFloatingWindow()
-  let width  = float2nr(&columns * 0.9)
-  let height = float2nr(&lines * 0.8)
-  let top    = ((&lines - height) / 2) - 1
-  let left   = (&columns - width) / 2
-  let opts   = { 'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal' }
-  let top    = "╭" . repeat("─", width - 2) . "╮"
-  let mid    = "│" . repeat(" ", width - 2) . "│"
-  let bot    = "╰" . repeat("─", width - 2) . "╯"
-  let lines  = [top] + repeat([mid], height - 2) + [bot]
-  let s:buf  = nvim_create_buf(v:false, v:true)
+"nnoremap <silent> <leader>gg :LazyGit<CR>
+nnoremap <silent> <leader>gg :call ToggleLazyGit()<CR>
 
-  call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
-  call nvim_open_win(s:buf, v:true, opts)
-  set winhl=Normal:Floating
-  call InvertBackground()
+" coc config
+nmap <silent> <leader>jd <Plug>(coc-definition)
+nmap <silent> <leader>jy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+autocmd FileType js,ts,cpp,cxx,h,hpp,c :call GoCoc()
+"let g:coc_global_extensions = [
+ " \ 'coc-snippets',
+"  \ 'coc-pairs',
+ " \ 'coc-tsserver',
+  "\ 'coc-eslint',
+  "\ 'coc-prettier',
 
-  call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, CreatePadding(opts))
-  autocmd BufWipeout <buffer> exe 'bwipeout '.s:buf
-  autocmd BufWipeout <buffer> call ResetBackground()
-endfunction
+  "\ 'coc-json',
+  "\ ]
 
-function! CreatePadding(opts)
-  let a:opts.row    += 1
-  let a:opts.height -= 2
-  let a:opts.col    += 2
-  let a:opts.width  -= 4
-  return a:opts
-endfunction
-" }}}
-" TOGGLE TERMINAL && ON TERMINAL EXIT {{{
-function! ToggleTerm(cmd)
-  if empty(bufname(a:cmd))
-    call CreateCenteredFloatingWindow()
-    call termopen(a:cmd, { 'on_exit': function('OnTermExit') })
-  else
-    bwipeout!
-  endif
-endfunction
-
-function! OnTermExit(job_id, code, event) dict
-  if a:code == 0
-    bwipeout!
-  endif
-endfunction
-" }}}
-" INVERT && RESET BACKGROUND {{{
-function! InvertBackground()
-  hi InactiveWindow guibg=NONE
-  hi ActiveWindow   guibg=#2c323c
-  set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
-endfunction
-
-function! ResetBackground()
-  hi ActiveWindow   guibg=NONE
-  hi InactiveWindow guibg=#2c323c
-  set winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
-endfunction
-" }}}
-" REMOVE EMPTY BUFFERS {{{
-function! RemoveEmptyBuffers()
-  let buffers = filter(range(1, bufnr('$')), 'buflisted(v:val) && empty(bufname(v:val)) && bufwinnr(v:val)<0 && !getbufvar(v:val, "&mod")')
-  if !empty(buffers)
-      silent exe 'bw ' . join(buffers, ' ')
-  endif
-endfunction
-" }}}
-" }}}
-  " TERMINAL BEHAVIOR {{{
-augroup TerminalBehavior
-  autocmd!
-  autocmd TermOpen * setlocal listchars= nonumber norelativenumber nowrap winfixwidth laststatus=0 noruler signcolumn=no noshowmode
-  autocmd TermOpen * startinsert
-  autocmd TermClose * set laststatus=2 showmode ruler
-augroup END
-
-
-" Terminal buffer options for fzf
-autocmd! FileType fzf
-autocmd  FileType fzf set noshowmode noruler nonu
-if has('nvim') && exists('&winblend') && &termguicolors
-  set winblend=20
-
-  hi NormalFloat guibg=None
-  if exists('g:fzf_colors.bg')
-    call remove(g:fzf_colors, 'bg')
-  endif
-
-  if stridx($FZF_DEFAULT_OPTS, '--border') == -1
-    let $FZF_DEFAULT_OPTS .= ' --border'
-  endif
-
-  function! FloatingFZF()
-    let width = float2nr(&columns * 0.8)
-    let height = float2nr(&lines * 0.6)
-    let opts = { 'relative': 'editor',
-               \ 'row': (&lines - height) / 2,
-               \ 'col': (&columns - width) / 2,
-               \ 'width': width,
-               \ 'height': height }
-
-    call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-  endfunction
-
-  let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-endif
-
+source ~/.config/nvim/plugged/fzf-floating.vim
