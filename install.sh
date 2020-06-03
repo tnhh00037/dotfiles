@@ -64,7 +64,9 @@ then
     [[ ! -d ~/tmux_plugins/tmux-resurrect/ ]] \
     && git clone https://github.com/tmux-plugins/tmux-resurrect  ~/.tmux/plugins/tmux-resurrect \
     && [ ! -d ~/.tmux/plugins/ ] &&  tmux && tmux source ~/.tmux.conf && ~/.tmux/plugins/tpm/scripts/update_plugin.sh
-    
+    ## Install f ( replace fzf )
+   apt install fd-find 
+
    ### Create simlink
 
    ## Backup .zshrc config  ( incase )
