@@ -8,22 +8,14 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/rainbow_parentheses.vim'
-" Aethetics - Additional
-Plug 'nightsense/nemo'
-Plug 'yuttie/hydrangea-vim'
-
 " Functionalities
 Plug 'tpope/vim-surround'
-Plug 'majutsushi/tagbar'
+"Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'zchee/deoplete-jedi'
 Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
-Plug 'junegunn/vim-easy-align'
 Plug 'alvan/vim-closetag'
-Plug 'tpope/vim-abolish'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -33,16 +25,18 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'metakirby5/codi.vim'
 Plug 'dkarter/bullets.vim'
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-easymotion.vim'
+Plug 'haya14busa/incsearch-fuzzy.vim'
+Plug 'easymotion/vim-easymotion'
 "Plug 'kdheepak/lazygit.vim', { 'branch': 'nvim-v1.4.3'}
 Plug 'kdheepak/lazygit.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Vim practise
 Plug 'ThePrimeagen/vim-be-good'
-" Entertainment
-"Plug 'ryanss/vim-hackernews'
-
 call plug#end()
+
 """ Python3 VirtualEnv
 let g:python3_host_prog =  '~/.config/nvim/env/bin/python'
 
@@ -66,7 +60,7 @@ filetype plugin indent on
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
 set incsearch ignorecase smartcase hlsearch
 set ruler laststatus=2 showcmd showmode
-set list listchars=trail:»,tab:»-
+set list listchars=trail:¬ª,tab:¬ª-
 set fillchars+=vert:\ 
 set wrap breakindent
 set encoding=utf-8
@@ -78,8 +72,8 @@ set nu rnu
 
 " NERDTree
 let NERDTreeShowHidden=1
-let g:NERDTreeDirArrowExpandable = '↠'
-let g:NERDTreeDirArrowCollapsible = '↡'
+let g:NERDTreeDirArrowExpandable = '‚Ü†'
+let g:NERDTreeDirArrowCollapsible = '‚Ü°'
 
 " Airline
 let g:airline_powerline_fonts = 1
@@ -109,16 +103,21 @@ let g:UltiSnipsExpandTrigger="<C-space>"
 let g:UltiSnipsJumpBackwardTrigger="<C-x>"
 " Completion trigger with tab
 inoremap <Tab> <C-y>
+
+" Easy Motion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+nmap f <Plug>(easymotion-overwin-w)
+let g:EasyMotion_smartcase = 1
 " EasyAlign
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " indentLine
-let g:indentLine_char = '▏'
+let g:indentLine_char = '‚ñè'
 let g:indentLine_color_gui = '#363949'
 
 " TagBar
 let g:tagbar_width = 30
-let g:tagbar_iconchars = ['↠', '↡']
+let g:tagbar_iconchars = ['‚Ü†', '‚Ü°']
 
 " fzf-vim
 let g:fzf_action = {
@@ -140,6 +139,21 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+" incsearch.vim x fuzzy x vim-easymotion
+source ~/.config/nvim/plugged/incsearch-easymotion.vim/autoload/incsearch/config/easymotion.vim
+function! s:config_easyfuzzymotion(...) abort
+  return extend(copy({
+  \   'converters': [incsearch#config#fuzzy#converter()],
+  \   'modules': [incsearch#config#easymotion#module()],
+  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+  \   'is_expr': 0,
+  \   'is_stay': 1
+  \ }), get(a:, 1, {}))
+endfunction
+
+map z/ <Plug>(incsearch-easymotion-/)
+
+ noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 """ Filetype-Specific Configurations
 
 " HTML, XML, Jinja
@@ -201,11 +215,7 @@ nmap <leader>r :source ~/.config/nvim/init.vim<CR>
 
 "" Unknown yet??
 "nmap <leader>t :call TrimWhitespace()<CR>
-"nnoremap <leader>w <c-w>
-"inoremap <leader>w <c-w>
-"inoremap <Esc><C-w> <C-w>
-"imap <C-f> <C-W>
-"nnoremap <C-w> <Nop>
+
 """ Easy align ( NOT USE )
 xmap <leader>a gaip*
 nmap <leader>a gaip*
