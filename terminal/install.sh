@@ -1,4 +1,6 @@
-#!/bin/bash
+# !/bin/bash
+
+# Save current directory
 CPWD=$PWD
 
 function cmd_exists() {
@@ -41,8 +43,7 @@ then
 
 	[[ ! -d "$HOME"/.oh-my-zsh ]] && echo y | sh /tmp/oh-my-zsh.sh -y || echo Oh-my-zsh existed
     
-    ## Install font
-    ## Install p10k theme
+    ## Install ZSH plugins
     [[ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k ]] \
     && git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
     
@@ -52,7 +53,7 @@ then
 
 
     [[ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]] \
-	&& git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting   
+	&& git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
     ## Install autojump
     apt install python -y
@@ -91,6 +92,9 @@ then
     	## Install vim
 	cmd_exists nvim ; [[ "$?" -eq 1 ]] \
 	&& brew install neovim
+
+    mkdir -p ~/.config/nvim
+    cp $CPWD/init.vim ~/.config/nvim/init.vim
     
 	## Install git
 	cmd_exists "git --version" ; [[ "$?" -eq 1 ]] \
@@ -164,13 +168,13 @@ fi
 
 ## Backup .zshrc config  ( incase )
 ## New ~/.zshrc will source .zshrc.local ( your old zsh )
-## Please modify your .zshrc.local to be suitable ( it's better to be separate with zshrc
+## Please modify your .zshrc.local to be suitable ( it's better to be separate with zshrc)
 [[ -f ~/.zshrc ]] &&  mv ~/.zshrc ~/.local/.zshrc.local
     
 ## Create simlink for dotfiles.
 # [ ! -d ~/.dotfiles ] && mkdir ~/.dotfiles
 cd "$CPWD"
-cp "$PWD"/.zshrc ~ 
+cp "$PWD"/.zshrc ~
 cp "$PWD"/.tmux.conf ~
 cp "$PWD"/.profile ~
 cp "$PWD"/.profile.local ~/.dotfiles/.local/
@@ -184,4 +188,4 @@ do
 done
 
 echo source "$HOME"/.profile >> ~/.zshrc
-echo source "$HOME"/.dotfiles/.local/.profile.local >> ~/.zshrc
+#echo source "$HOME"/.dotfiles/.local/.profile.local >> ~/.zshrc
