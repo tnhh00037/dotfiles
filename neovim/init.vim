@@ -7,9 +7,14 @@ Plug 'dracula/vim', { 'commit': '147f389f4275cec4ef43ebc25e2011c57b45cc00' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
-Plug 'junegunn/rainbow_parentheses.vim'
+" Functionalities
+
 " Functionalities
 Plug 'tpope/vim-surround'
+" Vim-journal : plain-text colorize
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'junegunn/vim-journal'
+
 "Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
