@@ -44,3 +44,9 @@ rm ~/.config/nvim/init.vim
 
 # Copy personal-config to override default
 cp init.vim ~/.config/nvim/init.vim
+
+# Copy Coc setting (currently autoformat):
+cp coc-setting.json ~/.config/nvim/
+
+# Copy floating window config:
+cp fzf-floating.json ~/.config/nvim/
