@@ -10,6 +10,9 @@ if [[ $OSTYPE == "linux-gnu"* ]]
 then
  cmd_exists nvim ; [[ "$?" -eq 1 ]] \
 &&  sudo apt install neovim 
+
+ # Install Ripgrep search:
+ sudo apt install rip-grep
 fi
 
 # OSX
@@ -17,6 +20,9 @@ if [[ $OSTYPE == "darwin"* ]]
 then
  cmd_exists nvim ; [[ "$?" -eq 1 ]] \
 &&  brew install neovim
+
+ # Install Ripgrep search:
+ brew install ripgrep
 fi
 
  # Make folder for vim config``
