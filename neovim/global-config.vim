@@ -1,3 +1,6 @@
+""" Stop auto comment next line
+set formatoptions-=cro
+
 """ Python3 VirtualEnv
 let g:python3_host_prog = '~/.config/nvim/env/bin/python3'
 let g:python_host_prog = '~/.config/nvim/env/bin/python'
