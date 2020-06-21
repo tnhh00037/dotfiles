@@ -1,3 +1,4 @@
+color gruvbox
 let mapleader=" "
 " Airline
 let g:airline_powerline_fonts = 1
@@ -57,6 +58,13 @@ let g:fzf_colors =
 function! ColorDracula()
     let g:airline_theme=''
     color dracula
+    IndentLinesEnable
+endfunction
+
+" Gruvbox Mode (Dark)
+function! GruvBox()
+    let g:airline_theme=''
+    color gruvbox
     IndentLinesEnable
 endfunction
 
