@@ -48,11 +48,13 @@ sed '/call plug#end/q' init.vim > ~/.config/nvim/init.vim # Default vim-config
 nvim -c ':PlugInstall' -c ':UpdateRemotePlugins' -c ':qall'
 rm ~/.config/nvim/init.vim
 
-# Copy personal-config to override default
-cp init.vim ~/.config/nvim/init.vim
-
 # Copy Coc setting (currently autoformat):
 cp coc-setting.json ~/.config/nvim/
 
 # Copy floating window config:
 cp fzf-floating.json ~/.config/nvim/
+
+# create simlink for vim-configs:
+ln -s ./init.vim ~/.config/nvim/init.vim
+ln -s ./global-config.vim ~/.config/nvim/global-config.vim
+ln -s ./pluginc-config.vim ~/.config/nvim/plugin-config.vim
