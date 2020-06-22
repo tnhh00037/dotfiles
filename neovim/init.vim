@@ -37,6 +37,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'ThePrimeagen/vim-be-good'
 call plug#end()
 
+let mapleader=" "
 source ~/.config/nvim/global-config.vim
 source ~/.config/nvim/plugin-config.vim
 source ~/.config/nvim/plugged/fzf-floating.vim
