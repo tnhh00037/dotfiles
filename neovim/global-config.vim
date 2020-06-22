@@ -1,3 +1,5 @@
+color gruvbox
+
 """ Stop auto comment next line
 set formatoptions-=cro
 
@@ -13,8 +15,9 @@ syntax on
 highlight Pmenu guibg=#80d6ff guifg=black gui=bold
 highlight PmenuSel guibg=#8aacc8 guifg=black gui=bold
 highlight Comment gui=bold
-highlight Normal gui=none
+highlight Normal gui=none guibg=NONE ctermbg=NONE
 highlight NonText guibg=none
+let t:is_transparent = 1
 
 "" Color keymap
 nmap <leader>w :TagbarToggle<CR>
