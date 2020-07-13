@@ -17,7 +17,7 @@ highlight PmenuSel guibg=#8aacc8 guifg=black gui=bold
 highlight Comment gui=bold
 highlight Normal gui=none guibg=NONE ctermbg=NONE
 highlight NonText guibg=none
-let t:is_transparent = 1
+"let t:is_transparent = 1
 
 "" Color keymap
 nmap <leader>w :TagbarToggle<CR>
@@ -60,6 +60,7 @@ tnoremap <A-l> <C-\><C-N><C-w>l
 tmap <C-d> <Esc>:q<CR>
 autocmd BufWinEnter,WinEnter term://* startinsert
 autocmd BufLeave term://* stopinsert
+
 set completeopt-=preview
 
 " Move in insert mode ( for moving between suggestions )
@@ -142,12 +143,6 @@ nmap <leader>r :source ~/.config/nvim/init.vim<CR>
   "\ 'coc-prettier',
   "\ 'coc-json',
   "\ ]
-" coc config
-nmap <silent> <leader>jd <Plug>(coc-definition)
-nmap <silent> <leader>jy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> <leader>gr <Plug>(coc-references)
-autocmd FileType js,ts,cpp,cxx,h,hpp,c :call GoCoc()
 
 "" Reload nivm
 nmap <leader>r :source ~/.config/nvim/init.vim<CR>
