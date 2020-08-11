@@ -138,6 +138,10 @@ nmap <silent> 'k 'K
 nmap <leader>s <C-w>s<C-w>j:terminal<CR>
 nmap <leader>vs <C-w>v<C-w>l:terminal<CR>
 
+" Set split below and right for naturality
+set splitbelow
+set splitright
+
 """ Floating terminal window
 nmap <leader>tt :call FloatingTerm()<CR>
 
