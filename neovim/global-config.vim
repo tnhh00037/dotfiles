@@ -1,4 +1,33 @@
-color gruvbox
+
+" Code format configuration
+filetype plugin indent on
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
+set incsearch ignorecase smartcase hlsearch
+set ruler laststatus=2 showcmd showmode
+set list listchars=trail:»,tab:»-
+set fillchars+=vert:\ 
+set wrap breakindent
+set encoding=utf-8
+set number
+set title
+set relativenumber
+set nu rnu
+let g:indentLine_char = '▏'
+let g:indentLine_color_gui = '#363949'
+
+" Show vertical line at 80 char
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+" Highlight current line
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
+
+let g:gruvbox_invert_selection='0'
+set noswapfile
 
 """ Stop auto comment next line
 set formatoptions-=cro
@@ -28,22 +57,6 @@ nmap <leader>e2 :call ColorDracula()<CR>
 
 " Opaque Background (Comment out to use terminal's profile)
 set termguicolors
-
-" Code format configuration
-filetype plugin indent on
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
-set incsearch ignorecase smartcase hlsearch
-set ruler laststatus=2 showcmd showmode
-set list listchars=trail:»,tab:»-
-set fillchars+=vert:\ 
-set wrap breakindent
-set encoding=utf-8
-set number
-set title
-set relativenumber
-set nu rnu
-let g:indentLine_char = '▏'
-let g:indentLine_color_gui = '#363949'
 
 " Enable float window
 if has('nvim-0.4.0')
