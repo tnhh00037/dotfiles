@@ -54,6 +54,7 @@ nmap <leader>ee :Colors<CR>
 nmap <leader>ea :AirlineTheme<CR>
 nmap <leader>e1 :call GruvBox()<CR>
 nmap <leader>e2 :call ColorDracula()<CR>
+nmap <leader>e3 :call GruvBoxMaterial()<CR>
 
 " Opaque Background (Comment out to use terminal's profile)
 set termguicolors
