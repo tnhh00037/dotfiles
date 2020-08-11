@@ -150,6 +150,12 @@ nmap <leader>+ :vertical res+15<CR>
 nmap <leader>- :vertical res-10<CR>
 nmap <leader>r :source ~/.config/nvim/init.vim<CR>
 
+" Ignore all Dirvish keymap
+augroup dirvish_config
+    autocmd!
+    autocmd FileType dirvish silent! unmap <buffer> <C-p>
+augroup END
+
 "let g:coc_global_extensions = [
  " \ 'coc-snippets',
 "  \ 'coc-pairs',
