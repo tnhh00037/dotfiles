@@ -92,7 +92,7 @@ if has('nvim') && exists('&winblend') && &termguicolors
   endif
 
   function! FloatingFZF()
-    let width = float2nr(&columns * 0.8)
+    let width = float2nr(&columns * 0.9)
     let height = float2nr(&lines * 0.6)
     let opts = { 'relative': 'editor',
                \ 'row': (&lines - height) / 2,
@@ -106,7 +106,7 @@ if has('nvim') && exists('&winblend') && &termguicolors
   let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 
   function! FloatingTerm()
-    let width = float2nr(&columns * 0.8)
+    let width = float2nr(&columns * 0.9)
     let height = float2nr(&lines * 0.6)
     let opts = { 'relative': 'editor',
                \ 'row': (&lines - height) / 2,
@@ -123,8 +123,5 @@ if has('nvim') && exists('&winblend') && &termguicolors
     startinsert
 
   endfunction
-
-
-
 endif
 
