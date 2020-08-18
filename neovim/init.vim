@@ -6,9 +6,11 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'sainnhe/gruvbox-material'
 
 " Functionalities
 Plug 'junegunn/vim-journal'
+"Plug 'neoclide/rename.nvim'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround'
 Plug 'majutsushi/tagbar'
@@ -24,8 +26,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'chrisbra/Colorizer'
 Plug 'morhetz/gruvbox'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-abolish'
+
 "Plug 'SirVer/ultisnips'
 "Plug 'honza/vim-snippets'
+Plug 'mbbill/undotree'
+Plug 'justinmk/vim-dirvish'
 Plug 'kdheepak/lazygit.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'haya14busa/incsearch.vim'
@@ -41,6 +48,7 @@ let mapleader=" "
 syntax enable
 
 set termguicolors
+set path+=**
 
 source ~/.config/nvim/global-config.vim
 source ~/.config/nvim/plugin-config.vim

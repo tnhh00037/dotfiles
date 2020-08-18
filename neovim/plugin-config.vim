@@ -20,7 +20,7 @@ nmap ga <Plug>(EasyAlign)
 " Easy Motion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 nmap fw <Plug>(easymotion-overwin-w)
-nmap f <Plug>(easymotion-overwin-f)
+nmap ff <Plug>(easymotion-overwin-f)
 let g:EasyMotion_smartcase = 1
 
 " LAZYGIT {{{
@@ -76,6 +76,21 @@ function! GruvBox()
     let g:gruvbox_invert_selection='0'
 endfunction
 
+" Gruvbox-Material (Dark)
+function! GruvBoxMaterial()
+    let g:airline_theme='gruvbox_material'
+    let g:gruvbox_material_background = 'hard'
+    let g:gruvbox_material_palette = 'mix'
+
+    color gruvbox-material
+    IndentLinesEnable
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
+
+    let g:gruvbox_invert_selection='0'
+endfunction
+autocmd VimEnter * call GruvBoxMaterial()
 
 """ NERDTree
 let g:tagbar_width = 30
@@ -129,12 +144,13 @@ function! s:goyo_enter()
 "    silent !tmux set status off
 "    silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
 "  endif
-  set list
-set listchars=tab:>-
-  set number
-  set title
-  set relativenumber
-  set nu rnu
+    set list
+    set listchars=tab:>-
+    set number
+    set title
+    set relativenumber
+    set nu rnu
+    set linespace=7
 "  command! AirlineToggle
 endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
@@ -143,5 +159,25 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 nmap <silent> <leader>jd <Plug>(coc-definition)
 nmap <silent> <leader>jy <Plug>(coc-type-definition)
 nmap <silent> <leader>gr <Plug>(coc-references)
-autocmd CursorHold * silent call CocActionAsync('highlight')
-autocmd FileType js,ts,cpp,cxx,h,hpp,c :call GoCoc()
+nmap <leader>do <Plug>(coc-codeaction)
+nmap <leader>rr <Plug>(coc-rename)
+nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>err :CocList diagnostics<CR>
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nnoremap <silent> K :call CocAction('doHover')<CR>
+function! ShowDocIfNoDiagnostic(timer_id)
+  if (coc#util#has_float() == 0)
+    silent call CocActionAsync('doHover')
+  endif
+endfunction
+"function! s:show_hover_doc()
+"  call timer_start(100, 'ShowDocIfNoDiagnostic')
+"endfunction
+"autocmd CursorHoldI * :call <SID>show_hover_doc()
+"autocmd CursorHold * :call <SID>show_hover_doc()
+"autocmd CursorHold * silent call CocActionAsync('highlight')
+"autocmd FileType js,ts,cpp,cxx,h,hpp,c :call GoCoc()
+
+" Git gutter:
+nmap ghp <Plug>(GitGutterPreviewHunk)
