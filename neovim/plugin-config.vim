@@ -1,10 +1,11 @@
 " Airline
-let g:airline_powerline_fonts = 1
+"let g:airline_powerline_fonts = 1
 let g:airline_section_z = ' %{strftime("%-I:%M %p")}'
 let g:airline_section_warning = ''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline_theme='simple'
 " Supertab
 let g:SuperTabDefaultCompletionType = "<C-n>"
@@ -12,6 +13,19 @@ let g:SuperTabDefaultCompletionType = "<C-n>"
 " Ultisnips
 let g:UltiSnipsExpandTrigger="<C-e>"
 let g:UltiSnipsJumpForwardTrigger="<C-e>"
+
+let g:airline_theme='gruvbox_material'
+let g:gruvbox_material_background = 'hard'
+let g:gruvbox_material_palette = 'mix'
+
+colorscheme gruvbox-material
+let g:gruvbox_material_better_performance = 1
+let g:gruvbox_material_current_word = 'bold'
+let g:gruvbox_material_diagnostic_line_highlight = 1
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+let g:gruvbox_invert_selection='0'
 
 " EasyAlign
 xmap ga <Plug>(EasyAlign)
@@ -90,7 +104,7 @@ function! GruvBoxMaterial()
 
     let g:gruvbox_invert_selection='0'
 endfunction
-autocmd VimEnter * call GruvBoxMaterial()
+"autocmd VimEnter * call GruvBoxMaterial()
 
 """ NERDTree
 let g:tagbar_width = 30
@@ -181,3 +195,10 @@ endfunction
 
 " Git gutter:
 nmap ghp <Plug>(GitGutterPreviewHunk)
+
+" Ignore all Dirvish keymap
+augroup dirvish_config
+    autocmd!
+    autocmd FileType dirvish silent! unmap <buffer> <C-p>
+augroup END
+
