@@ -185,6 +185,12 @@ function! ShowDocIfNoDiagnostic(timer_id)
     silent call CocActionAsync('doHover')
   endif
 endfunction
+
+if has('nvim')
+  inoremap <silent><expr> <c-n> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 "function! s:show_hover_doc()
 "  call timer_start(100, 'ShowDocIfNoDiagnostic')
 "endfunction

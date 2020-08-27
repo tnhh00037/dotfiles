@@ -176,8 +176,8 @@ fi
 cd "$CPWD"
 cp "$PWD"/.zshrc ~
 cp "$PWD"/.tmux.conf ~
-cp "$PWD"/.profile ~
-cp "$PWD"/.profile.local ~/.dotfiles/.local/
+cp "$PWD"/.profile.user ~
+cp "$PWD"/.profile.local ~
 
 ## Copy all dotfiles to ~/.dotfiles
 SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
@@ -187,5 +187,5 @@ do
      [[ -f $f ]] && [[ ! $f == "$SCRIPTPATH/.zshrc" ]] && [[ ! $f == "$SCRIPTPATH/.tmux.conf" ]]  && [[ ! $f == "$SCRIPTPATH/.gitignore" ]] &&   [[ ! $f == "$SCRIPTPATH/.profile"* ]] && cp $f ~/.dotfiles/
 done
 
-echo source "$HOME"/.profile >> ~/.zshrc
+echo source "$HOME"/.profile.user >> ~/.zshrc
 #echo source "$HOME"/.dotfiles/.local/.profile.local >> ~/.zshrc
