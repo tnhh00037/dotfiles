@@ -179,12 +179,21 @@ nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>err :CocList diagnostics<CR>
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
-nnoremap <silent> K :call CocAction('doHover')<CR>
-function! ShowDocIfNoDiagnostic(timer_id)
-  if (coc#util#has_float() == 0)
-    silent call CocActionAsync('doHover')
+"nnoremap <silent> K :call CocAction('doHover')<CR>
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
   endif
 endfunction
+"autocmd CursorHold * silent call CocActionAsync('highlight')
+"function! ShowDocIfNoDiagnostic(timer_id)
+"  if (coc#util#has_float() == 0)
+"    silent call CocActionAsync('doHover')
+"  endif
+"endfunction
 
 if has('nvim')
   inoremap <silent><expr> <c-n> coc#refresh()
