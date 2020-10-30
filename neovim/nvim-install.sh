@@ -1,3 +1,4 @@
+#!/bin/bash
 function cmd_exists () {
     command -v $1 > /dev/null 2>&1
 }
@@ -53,6 +54,9 @@ cp coc-setting.json ~/.config/nvim/
 
 # Copy floating window config:
 cp fzf-floating.json ~/.config/nvim/
+
+# Copy darker config for gruvbox-material
+cp gruvbox_material.vim ~/.config/nvim/plugged/gruvbox-material/autoload/
 
 # create simlink for vim-configs:
 ln -s ./init.vim ~/.config/nvim/init.vim
