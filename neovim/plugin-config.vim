@@ -17,8 +17,9 @@ let g:UltiSnipsJumpForwardTrigger="<C-e>"
 let g:airline_theme='gruvbox_material'
 let g:gruvbox_material_background = 'hard'
 let g:gruvbox_material_palette = 'mix'
+"let g:gruvbox_material_transparent_background = 1
 
-colorscheme gruvbox-material
+color gruvbox-material
 let g:gruvbox_material_better_performance = 1
 let g:gruvbox_material_current_word = 'bold'
 let g:gruvbox_material_diagnostic_line_highlight = 1
@@ -104,14 +105,9 @@ function! GruvBoxMaterial()
 
     let g:gruvbox_invert_selection='0'
 endfunction
-"autocmd VimEnter * call GruvBoxMaterial()
 
-""" NERDTree
-let g:tagbar_width = 30
-let g:tagbar_iconchars = ['↠', '↡']
-let NERDTreeShowHidden=1
-let g:NERDTreeDirArrowExpandable = '↠'
-let g:NERDTreeDirArrowCollapsible = '↡'
+nnoremap <leader>cc <Plug>NERDCommenterToggle<CR>
+
 
 nmap <leader>q :NERDTreeToggle<CR>
 nmap \ :NERDTreeToggle<CR>
@@ -188,12 +184,14 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
-"autocmd CursorHold * silent call CocActionAsync('highlight')
-"function! ShowDocIfNoDiagnostic(timer_id)
-"  if (coc#util#has_float() == 0)
-"    silent call CocActionAsync('doHover')
-"  endif
-"endfunction
+let g:coc_global_extensions = [
+\ 'coc-snippets',
+\ 'coc-prettier',
+\ 'coc-pairs',
+\ 'coc-tsserver',
+\ 'coc-json',
+\ 'coc-go',
+\ ]
 
 if has('nvim')
   inoremap <silent><expr> <c-n> coc#refresh()
