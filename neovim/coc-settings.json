@@ -1,12 +1,26 @@
 {
-  "suggest.noselect": false,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "javascript",
-    "typescript",
-    "typescriptreact",
-    "json",
-    "javascriptreact",
-    "typescript.tsx",
-    "graphql"
-  ]
+    "suggest.noselect": false,
+    "prettier.printWidth": 80,
+    "prettier.tabWidth": 4,
+    "prettier.singleQuote": true,
+    "suggest.enablePreview": true,
+    "suggest.autoTrigger": "always",
+    "npm.binPath": "/home/nghia/.nvm/versions/node/v12.16.3/bin/npm",
+    "languageserver": {
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
+            "filetypes": ["go"]
+        }
+    },
+    "coc.preferences.formatOnSaveFiletypes": [
+        "javascript",
+        "typescript",
+        "typescriptreact",
+        "json",
+        "javascriptreact",
+        "typescript.tsx",
+        "graphql",
+        "go"
+    ]
 }
