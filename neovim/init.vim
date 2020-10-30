@@ -14,7 +14,7 @@ Plug 'junegunn/vim-journal'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround'
 Plug 'majutsushi/tagbar'
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
@@ -28,7 +28,9 @@ Plug 'chrisbra/Colorizer'
 Plug 'morhetz/gruvbox'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-eunuch'
 
+Plug 'bounceme/remote-viewer'
 "Plug 'SirVer/ultisnips'
 "Plug 'honza/vim-snippets'
 Plug 'mbbill/undotree'
@@ -42,6 +44,10 @@ Plug 'easymotion/vim-easymotion'
 Plug 'aserebryakov/vim-todo-lists'
 " Vim practise
 Plug 'ThePrimeagen/vim-be-good'
+
+" Go development
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
+"Plug 'govim/govim'
 call plug#end()
 
 let mapleader=" "
