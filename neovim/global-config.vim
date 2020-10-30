@@ -5,7 +5,8 @@ set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
 set incsearch ignorecase smartcase hlsearch
 set ruler laststatus=2 showcmd showmode
 set list listchars=trail:»,tab:»-
-set fillchars+=vert:\ 
+set fillchars+=vert:\
+hi vertsplit guifg=fg guibg=bg
 set wrap breakindent
 set encoding=utf-8
 set number
@@ -37,7 +38,7 @@ let g:python3_host_prog = '~/.config/nvim/env/bin/python3'
 let g:python_host_prog = '~/.config/nvim/env/bin/python'
 
 """ Node path
-let g:coc_node_path='~/.nvm/versions/node/v12.13.1/bin/node'
+let g:coc_node_path='~/.nvm/versions/node/v12.16.3/bin/node'
 
 " Coloring
 syntax on
@@ -46,7 +47,7 @@ highlight PmenuSel guibg=#8aacc8 guifg=black gui=bold
 highlight Comment gui=bold
 highlight Normal gui=none guibg=NONE ctermbg=NONE
 highlight NonText guibg=none
-"let t:is_transparent = 1
+let t:is_transparent = 1
 
 "" Color keymap
 nmap <leader>w :TagbarToggle<CR>
@@ -66,12 +67,11 @@ endif
 
 """ Terminal
 tmap <Esc> <C-\><C-n>
-tmap <C-d> <Esc>:q<CR>
+"tmap <C-d> <Esc>:q<CR>
 tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
 tnoremap <A-k> <C-\><C-N><C-w>k
 tnoremap <A-l> <C-\><C-N><C-w>l
-tmap <C-d> <Esc>:q<CR>
 autocmd BufWinEnter,WinEnter term://* startinsert
 autocmd BufLeave term://* stopinsert
 
@@ -99,6 +99,7 @@ nmap <leader>q :wincmd q<CR>
 " Markdown and Journal
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
 """ Ignore last search highlight
 nmap <silent> <leader><leader> :noh<CR>
@@ -154,19 +155,14 @@ nmap <leader>+ :vertical res+15<CR>
 nmap <leader>- :vertical res-10<CR>
 nmap <leader>r :source ~/.config/nvim/init.vim<CR>
 
-" Ignore all Dirvish keymap
-augroup dirvish_config
-    autocmd!
-    autocmd FileType dirvish silent! unmap <buffer> <C-p>
-augroup END
-
 "let g:coc_global_extensions = [
- " \ 'coc-snippets',
+"  \ 'coc-snippets',
 "  \ 'coc-pairs',
- " \ 'coc-tsserver',
-  "\ 'coc-prettier',
-  "\ 'coc-json',
-  "\ ]
+"  \ 'coc-tsserver',
+"  \ 'coc-prettier',
+"  \ 'coc-json',
+"  \ 'coc-go',
+"  \ ]
 
 "" Reload nivm
 nmap <leader>r :source ~/.config/nvim/init.vim<CR>
