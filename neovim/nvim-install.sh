@@ -61,4 +61,4 @@ cp gruvbox_material.vim ~/.config/nvim/plugged/gruvbox-material/autoload/
 # create simlink for vim-configs:
 ln -s ./init.vim ~/.config/nvim/init.vim
 ln -s ./global-config.vim ~/.config/nvim/global-config.vim
-ln -s ./pluginc-config.vim ~/.config/nvim/plugin-config.vim
+ln -s ./plugin-config.vim ~/.config/nvim/plugin-config.vim
