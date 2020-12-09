@@ -33,6 +33,18 @@ set noswapfile
 """ Stop auto comment next line
 set formatoptions-=cro
 
+""" Resize on-focus window to 85
+augroup ReduceNoise
+    autocmd!
+    " Automatically resize active split to 85 width
+    autocmd WinEnter * :call ResizeSplits()
+augroup END
+
+function! ResizeSplits()
+    set winwidth=85
+    wincmd =
+endfunction
+
 """ Python3 VirtualEnv
 let g:python3_host_prog = '~/.config/nvim/env/bin/python3'
 let g:python_host_prog = '~/.config/nvim/env/bin/python'
