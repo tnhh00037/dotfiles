@@ -15,22 +15,17 @@ then
 	
 	## Update apt
 	apt update -y
-	## Install wget
-	apt install wget -y
-	
-    ## Install vim
-    apt install vim -y
-    
-	## Install git
-	apt install git -y
+	## Install curl, wget, git, xclip ( for tmux copy/pase )
+	apt install curl wget git xclip -y
 
-    ## Install xlip ( for tmux copy/pase )
-    apt install xlip -y
+    ## Install xclip 
 
     ## Install lsd (colorful ls)
-    which autojump && [ "$?" -eq 1 ] \
+    which lsd && [ "$?" -eq 1 ] \
     && wget -c -O /tmp/lsd.deb 'https://github.com/Peltoche/lsd/releases/download/0.17.0/lsd-musl_0.17.0_amd64.deb' \
-     && dpkg -i /tmp/lsd.deb || echo "Autojump already existed. "
+     && dpkg -i /tmp/lsd.deb || echo "lsd already existed. "
+
+    ## TODO: install nvm
 
 	## Install zsh
 	# Get zsh
@@ -39,8 +34,7 @@ then
 	chsh -s /bin/zsh
 	
 	## Install oh-my-zsh
-    	wget -c -O /tmp/oh-my-zsh.sh 'https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
-
+    wget -c -O /tmp/oh-my-zsh.sh 'https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
 	[[ ! -d "$HOME"/.oh-my-zsh ]] && echo y | sh /tmp/oh-my-zsh.sh -y || echo Oh-my-zsh existed
     
     ## Install ZSH plugins
@@ -52,6 +46,7 @@ then
     && git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 
+    # Install syntax-highlighting plugin
     [[ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]] \
 	&& git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
@@ -66,17 +61,14 @@ then
     apt-get install tmux -y
     # plugins management
     git clone https://github.com/tmux-plugins/tpm  ~/.tmux/tpm
+
     # plugins: Tmux Resurrect
-    	[[ ! -d ~/.tmux/plugins/tmux-resurrect ]] \
+    [[ ! -d ~/.tmux/plugins/tmux-resurrect ]] \
     && git clone https://github.com/tmux-plugins/tmux-resurrect  ~/.tmux/plugins/tmux-resurrect \
     && [ ! -d ~/.tmux/plugins/ ] &&  tmux && tmux source ~/.tmux.conf && ~/.tmux/plugins/tpm/scripts/update_plugin.sh
-    ## Install f ( replace fzf )
-   apt install fd-find 
 
-fi
 
-if [[ $OSTYPE == "darwin"* ]]
-then
+else
 
 	echo MacOs machine. 
  	
@@ -93,20 +85,14 @@ then
 	cmd_exists nvim ; [[ "$?" -eq 1 ]] \
 	&& brew install neovim
 
-    mkdir -p ~/.config/nvim
-    cp $CPWD/init.vim ~/.config/nvim/init.vim
-    
 	## Install git
 	cmd_exists "git --version" ; [[ "$?" -eq 1 ]] \
 	&& brew install git
 
 
-	## Install xlip ( for tmux copy/pase ) ( check mac need or not)
-    	# apt install xlip -y
-
-    	## Install lsd (colorful ls)
-    	cmd_exists lsd ; [ "$?" -eq 1 ] \
-    	&& brew install lsd || echo "Lsd already existed. "
+    ## Install lsd (colorful ls)
+    cmd_exists lsd ; [ "$?" -eq 1 ] \
+    && brew install lsd || echo "Lsd already existed. "
 
 	## Install zsh
 	# Get zsh
@@ -162,30 +148,28 @@ then
 
 fi
 
-## like .node ; .nvm ; .android; .go ; .ros... for better for your mainternance
+## like .node ; .nvm ; .android; .go ; .ros...  better for your mainternance
 # Put all your configs inside ~/.dotfile/.local folder
-[[ ! -d ~/.dotfiles/.local ]] && mkdir -p ~/.dotfiles/.local
+[[ ! -d ~/.dotfiles ]] && mkdir -p ~/.dotfiles
 
 ## Backup .zshrc config  ( incase )
 ## New ~/.zshrc will source .zshrc.local ( your old zsh )
-## Please modify your .zshrc.local to be suitable ( it's better to be separate with zshrc)
-[[ -f ~/.zshrc ]] &&  mv ~/.zshrc ~/.local/.zshrc.local
+## Please modify your .zshrc.local to be suitable ( it's better to be separated with main zshrc)
+[[ -f ~/.zshrc ]] &&  mv ~/.zshrc ~/.zshrc.local
     
 ## Create simlink for dotfiles.
-# [ ! -d ~/.dotfiles ] && mkdir ~/.dotfiles
 cd "$CPWD"
 cp "$PWD"/.zshrc ~
 cp "$PWD"/.tmux.conf ~
 cp "$PWD"/.profile.user ~
-cp "$PWD"/.profile.local ~
 
-## Copy all dotfiles to ~/.dotfiles
+## Copy all default dotfiles to ~/.dotfiles
 SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 A=( $SCRIPTPATH/.* )
+
 for f in ${A[@]}
 do
      [[ -f $f ]] && [[ ! $f == "$SCRIPTPATH/.zshrc" ]] && [[ ! $f == "$SCRIPTPATH/.tmux.conf" ]]  && [[ ! $f == "$SCRIPTPATH/.gitignore" ]] &&   [[ ! $f == "$SCRIPTPATH/.profile"* ]] && cp $f ~/.dotfiles/
 done
 
 echo source "$HOME"/.profile.user >> ~/.zshrc
-#echo source "$HOME"/.dotfiles/.local/.profile.local >> ~/.zshrc

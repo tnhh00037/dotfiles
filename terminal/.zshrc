@@ -72,6 +72,10 @@ bindkey -M viins '^Y' yank
 bindkey -M viins '^P' up-line-or-history
 bindkey -M viins '^N' down-line-or-history
 
+## Map up/down to search matched history
+bindkey '\e[A' history-beginning-search-backward
+bindkey '\e[B' history-beginning-search-forward
+
 #DISABLE_MAGIC_FUNCTIONS=true
 ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
 pasteinit() {

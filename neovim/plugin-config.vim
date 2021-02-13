@@ -108,11 +108,6 @@ endfunction
 
 nnoremap <leader>cc <Plug>NERDCommenterToggle<CR>
 
-
-nmap <leader>q :NERDTreeToggle<CR>
-nmap \ :NERDTreeToggle<CR>
-nnoremap <silent> <leader>pv :NERDTreeFind<CR>
-
 """ Incsearch.vim x fuzzy x vim-easymotion
 source ~/.config/nvim/plugged/incsearch-easymotion.vim/autoload/incsearch/config/easymotion.vim
 function! s:config_easyfuzzymotion(...) abort

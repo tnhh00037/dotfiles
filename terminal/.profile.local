@@ -1,6 +1,0 @@
-#!/bin/bash
-A=( "$HOME"/.dotfiles/.local/.* )
-for f in ${A[@]}
-do
-        [[ -f $f ]] && . $f
-done
