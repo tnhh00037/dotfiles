@@ -27,7 +27,6 @@ Plug 'morhetz/gruvbox'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-eunuch'
-
 Plug 'bounceme/remote-viewer'
 Plug 'mbbill/undotree'
 Plug 'justinmk/vim-dirvish'
@@ -38,6 +37,11 @@ Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'aserebryakov/vim-todo-lists'
+
+Plug 'jceb/vim-orgmode'
+Plug 'mattn/calendar-vim'
+Plug 'vim-scripts/utl.vim'
+
 " Vim practise
 Plug 'ThePrimeagen/vim-be-good'
 
@@ -47,6 +51,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries'}
 call plug#end()
 
 let mapleader=" "
+let maplocalleader=" "
 syntax enable
 
 set termguicolors
