@@ -16,7 +16,7 @@ then
 	## Update apt
 	sudo apt update -y
 	## Install curl, wget, git, xclip ( for tmux copy/pase )
-	sudo apt install curl wget git xclip -y
+	sudo apt install curl wget git xclip fortune cowsay -y
 
     ## Install nvm
     which nvm ; [[ "$?" -eq 1 ]] \
