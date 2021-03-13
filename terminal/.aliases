@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
 # Easier navigation: .., ..., ...., ....., ~ and -
-alias nvim='~/nvim.appimage'
-alias vim='nvim'
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."

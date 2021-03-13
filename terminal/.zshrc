@@ -76,6 +76,18 @@ bindkey -M viins '^N' down-line-or-history
 bindkey '\e[A' history-beginning-search-backward
 bindkey '\e[B' history-beginning-search-forward
 
+## Lazygit fnc
+lg()
+{
+    export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+
+    lazygit "$@"
+
+    if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
+            cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
+    fi
+}
 #DISABLE_MAGIC_FUNCTIONS=true
 ### Fix slowness of pastes with zsh-syntax-highlighting.zsh
 pasteinit() {
