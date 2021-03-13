@@ -3,7 +3,7 @@
 # Save current directory
 CPWD=$PWD
 
-function cmd_exists() {
+function cmd_exists () {
 	command -v $1 > /dev/null 2>&1
 }
 
@@ -19,7 +19,7 @@ then
 	sudo apt install curl wget git xclip -y
 
     ## Install nvm
-    cmd_exists() nvm ; [[ "$?" -eq 1 ]] && \
+    which nvm ; [[ "$?" -eq 1 ]] \
     && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 
     ## Install lsd (colorful ls)
@@ -52,7 +52,7 @@ then
 	&& git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
     ## Install autojump ( dangerous )
-    cmd_exists() python; [[ "$?" -eq 1 ]] && sudo apt install python -y
+    which python; [[ "$?" -eq 1 ]] && sudo apt install python -y
     git clone git://github.com/wting/autojump.git
     cd autojump && python ./install.py
     cd .. && rm -rf ./autojump
