@@ -14,28 +14,29 @@ then
 	### LINUX
 	
 	## Update apt
-	apt update -y
+	sudo apt update -y
 	## Install curl, wget, git, xclip ( for tmux copy/pase )
-	apt install curl wget git xclip -y
+	sudo apt install curl wget git xclip -y
 
-    ## Install xclip 
+    ## Install nvm
+    cmd_exists() nvm ; [[ "$?" -eq 1 ]] && \
+    && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 
     ## Install lsd (colorful ls)
     which lsd && [ "$?" -eq 1 ] \
     && wget -c -O /tmp/lsd.deb 'https://github.com/Peltoche/lsd/releases/download/0.17.0/lsd-musl_0.17.0_amd64.deb' \
-     && dpkg -i /tmp/lsd.deb || echo "lsd already existed. "
-
-    ## TODO: install nvm
+    && sudo dpkg -i /tmp/lsd.deb || echo "lsd already existed. "
 
 	## Install zsh
 	# Get zsh
-	apt install zsh -y
+	sudo apt install zsh -y
 	# Use zsh as default
-	chsh -s /bin/zsh
+	sudo chsh -s /bin/zsh
 	
 	## Install oh-my-zsh
-    wget -c -O /tmp/oh-my-zsh.sh 'https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
-	[[ ! -d "$HOME"/.oh-my-zsh ]] && echo y | sh /tmp/oh-my-zsh.sh -y || echo Oh-my-zsh existed
+	[[ ! -d "$HOME"/.oh-my-zsh ]] \
+    && wget -c -O /tmp/oh-my-zsh.sh 'https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh' \
+    && echo y | sh /tmp/oh-my-zsh.sh -y || echo Oh-my-zsh existed
     
     ## Install ZSH plugins
     [[ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k ]] \
@@ -50,22 +51,22 @@ then
     [[ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]] \
 	&& git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-    ## Install autojump
-    apt install python -y
-    cd
+    ## Install autojump ( dangerous )
+    cmd_exists() python; [[ "$?" -eq 1 ]] && sudo apt install python -y
     git clone git://github.com/wting/autojump.git
     cd autojump && python ./install.py
+    cd .. && rm -rf ./autojump
 
     ## Install tmux & plugins
     # tmux
-    apt-get install tmux -y
+    sudo apt-get install tmux -y
     # plugins management
     git clone https://github.com/tmux-plugins/tpm  ~/.tmux/tpm
 
     # plugins: Tmux Resurrect
     [[ ! -d ~/.tmux/plugins/tmux-resurrect ]] \
     && git clone https://github.com/tmux-plugins/tmux-resurrect  ~/.tmux/plugins/tmux-resurrect \
-    && [ ! -d ~/.tmux/plugins/ ] &&  tmux && tmux source ~/.tmux.conf && ~/.tmux/plugins/tpm/scripts/update_plugin.sh
+    && [ ! -d ~/.tmux/plugins/ ] &&  tmux && tmux source ~/.tmux.conf && ~/.tmux/tpm/scripts/update_plugin.sh
 
 
 else
@@ -132,19 +133,15 @@ else
     	# tmux
     	which tmux > /dev/null 2>&1 ; [[ "$?" -eq 1 ]] && brew install tmux
 
+        # TODO find way to auto install tmux plugin
     	# plugins management
     	[[ ! -d  ~/.tmux/tpm ]] \
     	&& git clone https://github.com/tmux-plugins/tpm  ~/.tmux/tpm
 
-    	# plugins: Tmux Resurrect
+    	# plugins: Tmux Resurrect. 
     	[[ ! -d ~/.tmux/plugins/tmux-resurrect ]] \
     	&& git clone https://github.com/tmux-plugins/tmux-resurrect  ~/.tmux/plugins/tmux-resurrect \
     	&& [ ! -d ~/.tmux/plugins/ ] &&  tmux && tmux source ~/.tmux.conf && ~/.tmux/plugins/tpm/scripts/update_plugin.sh || echo "tmux-resurrect existed" 
-    	## Install f ( replace fzf )
-   	# apt install fd-find 
-
-   	### Create simlink
-
 
 fi
 
